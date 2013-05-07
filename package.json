@@ -1,0 +1,9 @@
+{
+  "name": "import-linkedin-profile",
+  "description": "Fetch your LinkedIn.com public profile as JSON.",
+  "version": "0.0.7",
+  "dependencies": {
+    "q": "0.9.3",
+    "localtunnel-wrapper": "0.0.1"
+  }
+}
