@@ -1,0 +1,17 @@
+{
+  "authCodeApi": {
+    "protocol": "https",
+    "hostname": "www.linkedin.com",
+    "path": "/uas/oauth2/authorization?response_type=code&client_id={{apiKey}}&scope=r_contactinfo%20r_emailaddress%20r_fullprofile%20r_network%20rw_groups&state={{salt}}&redirect_uri={{redirectUri}}"
+  },
+  "accessTokenApi": {
+    "protocol": "https",
+    "hostname": "www.linkedin.com",
+    "path": "/uas/oauth2/accessToken?grant_type=authorization_code&code={{authCode}}&redirect_uri={{redirectUri}}&client_id={{apiKey}}&client_secret={{secretKey}}"
+  },
+  "profileApi": {
+    "protocol": "https",
+    "hostname": "api.linkedin.com",
+    "path": "/v1/people/~:(associations,certifications,courses,date-of-birth,educations,following,honors,interests,job-bookmarks,languages,last-modified-timestamp,member-url-resources,mfeed-rss-url,num-recommenders,patents,proposal-comments,publications,recommendations-received,related-profile-views,skills,suggestions,three-current-positions,three-past-positions,volunteer)?oauth2_access_token={{accessToken}}"
+  }
+}
