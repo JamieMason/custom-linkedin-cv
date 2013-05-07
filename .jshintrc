@@ -1,0 +1,40 @@
+{
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "es5": true,
+  "evil": true,
+  "expr": true,
+  "latedef": false,
+  "laxbreak": true,
+  "newcap": true,
+  "noarg": true,
+  "node": true,
+  "regexdash": true,
+  "strict": false,
+  "sub": true,
+  "trailing": true,
+  "undef": true,
+  "unused": false,
+  "wsh": true,
+
+  "predef": [
+    "afterEach",
+    "beforeEach",
+    "console",
+    "define",
+    "describe",
+    "expect",
+    "exports",
+    "it",
+    "jasmine",
+    "runs",
+    "spyOn",
+    "waitsFor",
+    "EventSource",
+
+    "angular",
+    "_",
+    "_BOOTSTRAP"
+  ]
+}
