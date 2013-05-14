@@ -22,7 +22,7 @@ After you've done that you'll be given some OAuth Keys labelled;
 
 ## Packaged Example
 
-An example can be found in [server-example.js](https://github.com/JamieMason/import-linkedin-profile/blob/master/server-example.js), so let's use that.
+An example can be found in [example/server.js](https://github.com/JamieMason/import-linkedin-profile/blob/master/example/server.js), so let's use that.
 
 1. For the sake of this example, create a file called **api-keys.json** in the **import-linkedin-profile** directory, containing the application details you registered with LinkedIn;
 
@@ -34,7 +34,7 @@ An example can be found in [server-example.js](https://github.com/JamieMason/imp
 	      "salt": "Anything you like."
 	    }
 
-2. `$ node server-example.js`
+2. `$ node example/server.js`
 3. `$ open http://localhost:3000`
 4. In your browser you _should_ see a "Login and authorise app" link with our Node.js server exposed temporarily over [localtunnel.com](http://progrium.com/localtunnel/) so LinkedIn can see it.
 5. Following that link should prompt you to login to LinkedIn and authorise your own application access to your profile data.
