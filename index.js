@@ -1,6 +1,6 @@
 var Q = require('q');
 var qRequest = require('q-request');
-var uriConfig = require('./uri-config');
+var linkedInApi = require('./linked-in-api');
 
 module.exports = {
 
@@ -18,7 +18,7 @@ module.exports = {
    * @param  {String} data.redirectUri     http://example.com/path?code=TEMP_AUTH_CODE&state=SALT
    * @return {String}
    */
-  getUserLoginUri: uriConfig.getAuthCodeUri,
+  getUserLoginUri: linkedInApi.getAuthCodeUri,
 
   /**
    * Once our user is logged in and our app has permission, we need to request an access token to be
@@ -44,7 +44,7 @@ module.exports = {
     deferred = Q.defer();
 
     // merge our params with the API URIs defined in config
-    uri = uriConfig.getAccessTokenUri({
+    uri = linkedInApi.getAccessTokenUri({
       authCode: options.authCode,
       secretKey: options.secretKey,
       apiKey: options.apiKey,
@@ -96,7 +96,7 @@ module.exports = {
     deferred = Q.defer();
 
     // merge our params with the API URIs defined in config
-    uri = uriConfig.getProfileUri({
+    uri = linkedInApi.getProfileUri({
       accessToken: options.accessToken
     });
 
