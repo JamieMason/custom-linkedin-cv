@@ -1,7 +1,7 @@
 {
   "name": "import-linkedin-profile",
   "description": "Fetch your LinkedIn.com public profile as JSON.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "dependencies": {
     "q": "0.9.3",
     "q-request": "1.0.0",
