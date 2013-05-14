@@ -1,6 +1,6 @@
 var Q = require('q');
+var qRequest = require('q-request');
 var uriConfig = require('./uri-config');
-var httpsPromise = require('./https-promise');
 
 module.exports = {
 
@@ -51,16 +51,24 @@ module.exports = {
       redirectUri: options.redirectUri
     });
 
-    httpsPromise.post({
+    qRequest.post({
+      secure: true,
       hostname: uri.hostname,
       path: uri.path,
       body: '\n'
     }).then(function(body) {
-      var data = JSON.parse(body);
+
+      try {
+        body = JSON.parse(body);
+      } catch(e) {
+        deferred.reject(body);
+      }
+
       deferred.resolve({
-        expiresIn: data.expires_in,
-        accessToken: data.access_token
+        expiresIn: body.expires_in,
+        accessToken: body.access_token
       });
+
     }).fail(function (error) {
       deferred.reject(error);
     });
@@ -92,14 +100,25 @@ module.exports = {
       accessToken: options.accessToken
     });
 
-    httpsPromise.get({
+    qRequest.get({
+      secure: true,
       hostname: uri.hostname,
       path: uri.path,
       headers: {
         'x-li-format': 'json'
       }
     }).then(function(body) {
-      deferred.resolve(JSON.parse(body));
+
+      try {
+        body = JSON.parse(body);
+      } catch(e) {
+        deferred.reject(body);
+      }
+
+      deferred.resolve(body);
+
+    }).fail(function (error) {
+      deferred.reject(error);
     });
 
     return deferred.promise;

@@ -4,6 +4,7 @@
   "version": "0.0.7",
   "dependencies": {
     "q": "0.9.3",
+    "q-request": "1.0.0",
     "localtunnel-wrapper": "0.0.1"
   }
 }
