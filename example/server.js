@@ -1,7 +1,7 @@
 var http = require('http');
 var parseUri = require('url').parse;
-var linkedIn = require('./index');
-var apiKeys = require('./api-keys.json');
+var linkedIn = require('../index');
+var apiKeys = require('../api-keys.json');
 var port = 3000;
 var jsonPath = '/profile.json';
 var tunnelUri;
