@@ -1,4 +1,4 @@
-var apiConfig = require('./api-config.json');
+var apiConfig = require('./config/api.json');
 
 /**
  * Merge a string containing {{tokens}} with values from an Object whose keys match those tokens
