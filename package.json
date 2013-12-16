@@ -5,9 +5,9 @@
   "main": "index.js",
   "version": "0.0.8",
   "dependencies": {
-    "q": "0.9.3",
+    "q": "~0.9.7",
     "q-request": "1.0.0",
-    "localtunnel-wrapper": "0.0.1"
+    "localtunnel-wrapper": "0.0.2"
   },
   "repository": {
     "type": "git",
