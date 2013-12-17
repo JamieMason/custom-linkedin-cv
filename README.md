@@ -1,17 +1,10 @@
-import-linkedin-profile
-=======================
+# linkedin-json
 
-In a nutshell, this Node.js module uses [LinkedIn's API](http://developer.linkedin.com) to retrieve your profile as JSON. Having this data can allow you to generate a CV or use as part of your Website, while managing this data in one place using LinkedIn - if you're into that kind of thing.
+## Setup
 
-## Installation
+### Register an Application with LinkedIn
 
-1. `$ git clone https://github.com/JamieMason/import-linkedin-profile.git`
-2. `$ cd import-linkedin-profile`
-3. `$ npm install`
-
-## Register an Application with LinkedIn
-
-Visit developer.linkedin.com and follow the [Add New Application](https://www.linkedin.com/secure/developer?newapp=) procedure. 
+Visit developer.linkedin.com and follow the [Add New Application](https://www.linkedin.com/secure/developer?newapp=) procedure.
 
 After you've done that you'll be given some OAuth Keys labelled;
 
@@ -20,25 +13,71 @@ After you've done that you'll be given some OAuth Keys labelled;
 + OAuth User Token
 + OAuth User Secret
 
-## Packaged Example
+### Install
 
-An example can be found in [example/server.js](https://github.com/JamieMason/import-linkedin-profile/blob/master/example/server.js), so let's use that.
+```bash
+git clone https://github.com/JamieMason/import-linkedin-profile.git
+cd import-linkedin-profile
+npm install
+```
 
-1. For the sake of this example, create a file called **api-keys.json** in the **import-linkedin-profile** directory, containing the application details you registered with LinkedIn;
+### Setup Heroku
 
-	    {
-	      "apiKey": "xxxxxxxxxxxx",
-	      "secretKey": "xxxxxxxxxxxxxxxx",
-	      "oauthUserToken": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-	      "oauthUserSecret": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-	      "salt": "Anything you like."
-	    }
+See: [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) and be sure to install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
 
-2. `$ node example/server.js`
-3. `$ open http://localhost:3000`
-4. In your browser you _should_ see a "Login and authorise app" link with our Node.js server exposed temporarily over [localtunnel.com](http://progrium.com/localtunnel/) so LinkedIn can see it.
-5. Following that link should prompt you to login to LinkedIn and authorise your own application access to your profile data.
-6. On logging in, you'll be redirected to your server which should serve you your LinkedIn profile in JSON format.
+```bash
+heroku login
+heroku plugins:install git://github.com/ddollar/heroku-config.git
+```
 
+### Submit API Keys to Heroku
 
+Create a file called `.env` in the root of the repo which contains your LinkedIn API keys.
 
+```bash
+API_KEY=xxxxxxxxxxxx
+SECRET_KEY=xxxxxxxxxxxxxxxx
+OAUTH_USER_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+OAUTH_USER_SECRET=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+SALT=anything-you-like
+SESSION_SECRET=anything-you-like
+```
+
+These will be available to you in Node as eg. `process.env.API_KEY`.
+
+Send those values to Heroku with the following command.
+
+```bash
+heroku config:push
+```
+
+### Deploy
+
+```bash
+heroku create
+git push heroku master
+```
+
+## Usage
+
+### Start an instance
+
+```bash
+heroku ps:scale web=1
+```
+
+### Inspect an instance
+
+```bash
+heroku ps
+```
+
+### View it in a web browser
+
+```bash
+heroku open
+```
+
+## UI
+
+A simple link will show which takes you to LinkedIn to authorise your Application. Once you've granted it access you'll be redirected back where you should be presented with a textarea containing your full profile as JSON.

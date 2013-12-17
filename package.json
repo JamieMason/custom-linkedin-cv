@@ -1,27 +1,24 @@
 {
-  "name": "import-linkedin-profile",
-  "description": "Fetch your LinkedIn.com public profile as JSON.",
-  "author": "Jamie Mason @GotNoSugarBaby",
-  "main": "index.js",
-  "version": "0.0.8",
-  "dependencies": {
-    "q": "~0.9.7",
-    "q-request": "1.0.0",
-    "localtunnel-wrapper": "0.0.2"
+  "name": "linkedin-json",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Jamie Mason, @fold_left",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JamieMason/linkedin-json/issues"
+  },
+  "engines": {
+    "node": "0.10.x"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/JamieMason/import-linkedin-profile.git"
+    "url": "https://github.com/JamieMason/linkedin-json.git"
   },
-  "bugs": {
-    "url": "http://github.com/JamieMason/import-linkedin-profile/issues"
-  },
-  "engines": [
-    "node >= 0.8.0"
-  ],
-  "tags": [
-    "linkedin",
-    "social",
-    "api"
-  ]
+  "dependencies": {
+    "express": "3.x.x",
+    "jade": "~0.35.0",
+    "locomotive": "0.3.x",
+    "lodash": "~2.4.1",
+    "q-request": "~1.0.0"
+  }
 }
