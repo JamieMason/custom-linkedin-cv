@@ -1,83 +1,41 @@
-# linkedin-json
+# custom-linkedin-cv
 
-## Setup
+At the time of writing, this project is a basic working prototype which is only a few hours old.
 
-### Register an Application with LinkedIn
+I treat my LinkedIn profile as a living Résumé, but sometimes I'm asked to format this information in a more traditional way.
 
-Visit developer.linkedin.com and follow the [Add New Application](https://www.linkedin.com/secure/developer?newapp=) procedure.
+Doing this is a _real chore involving a lot of copy and paste and manual formatting — so I created this in an effort to lighten the load a little.
 
-After you've done that you'll be given some OAuth Keys labelled;
+## Current behaviour
 
-+ API Key
-+ Secret Key
-+ OAuth User Token
-+ OAuth User Secret
+* Embed the LinkedIn JavaScript API.
+* Prompt user to authorise this application access to your LinkedIn profile data.
+* Fetch LinkedIn profile as JSON.
+* Use AngularJS to display the profile as a very basic HTML Document.
 
-### Install
+## Known issues
+
+* Your authenticated session with LinkedIn is not currently persisted between full-page reloads. _(I think this may be because I've only run it over http  rather than https so far, LinkedIn's docs mention this)_.
+
+## TODO
+
+* Stabilising, refactoring, unit tests.
+* Finish the default theme.
+* Implement a convenient way for the community to contribute custom designs. _(Ideally via something like `bower install custom-linkedin-<name>` and modifying this project's Grunt Task)_.
+
+## Install
 
 ```bash
-git clone https://github.com/JamieMason/import-linkedin-profile.git
-cd import-linkedin-profile
+git clone https://github.com/JamieMason/custom-linkedin-cv.git
+cd custom-linkedin-cv
 npm install
+bower install
 ```
 
-### Setup Heroku
-
-See: [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) and be sure to install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+## Run
 
 ```bash
-heroku login
-heroku plugins:install git://github.com/ddollar/heroku-config.git
+grunt build
+cd dist
+server 9000
 ```
-
-### Submit API Keys to Heroku
-
-Create a file called `.env` in the root of the repo which contains your LinkedIn API keys.
-
-```bash
-API_KEY=xxxxxxxxxxxx
-SECRET_KEY=xxxxxxxxxxxxxxxx
-OAUTH_USER_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-OAUTH_USER_SECRET=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-SALT=anything-you-like
-SESSION_SECRET=anything-you-like
-```
-
-These will be available to you in Node as eg. `process.env.API_KEY`.
-
-Send those values to Heroku with the following command.
-
-```bash
-heroku config:push
-```
-
-### Deploy
-
-```bash
-heroku create
-git push heroku master
-```
-
-## Usage
-
-### Start an instance
-
-```bash
-heroku ps:scale web=1
-```
-
-### Inspect an instance
-
-```bash
-heroku ps
-```
-
-### View it in a web browser
-
-```bash
-heroku open
-```
-
-## UI
-
-A simple link will show which takes you to LinkedIn to authorise your Application. Once you've granted it access you'll be redirected back where you should be presented with a textarea containing your full profile as JSON.
