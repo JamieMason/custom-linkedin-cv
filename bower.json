@@ -1,0 +1,16 @@
+{
+  "name": "linkedout",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.2.6",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "angular-route": "1.2.6",
+    "angular-cookies": "~1.2.9",
+    "angular-sanitize": "~1.2.9"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.6",
+    "angular-scenario": "1.2.6"
+  }
+}

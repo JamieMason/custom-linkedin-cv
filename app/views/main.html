@@ -1,0 +1,116 @@
+<div ng-if="!isLoggedIn">
+  <div class="text--center">
+    <a href="#" ng-click="login()">
+      <img src="http://developer.linkedin.com/sites/default/files/js-signin.png" alt="Sign in with LinkedIn" width="142" height="32">
+    </a>
+  </div>
+</div>
+
+<div ng-if="isLoggedIn" ng-controller="ProfileCtrl">
+
+  <div ng-if="hasProfile">
+
+    <hgroup>
+      <h1>{{me.firstName}} {{me.lastName}}</h1>
+      <h2>{{me.headline}}</h2>
+    </hgroup>
+
+    <ul>
+      <li>Location: {{me.location.name}}</li>
+      <li>Email address: <a href="mailto:{{me.emailAddress}}">{{me.emailAddress}}</a></li>
+    </ul>
+
+    <section class="foreword">
+      <h3>Foreword</h3>
+      <p ng-bind-html="me.summary"></p>
+    </section>
+
+    <section ng-if="me.positions._total > 0">
+      <h3>Positions held</h3>
+      <section ng-repeat="position in me.positions.values">
+        <hgroup>
+          <h4>{{position.title}}</h4>
+          <h5>{{position.company.name}} ({{position.company.industry}})</h5>
+        </hgroup>
+        <p>{{formatDate(position.startDate)}} - {{formatDate(position.endDate, 'Current')}}</p>
+        <p ng-bind-html="position.summary"></p>
+      </section>
+    </section>
+
+    <section ng-if="me.courses._total > 0">
+      <h3>Courses Attended</h3>
+      <ol>
+        <li ng-repeat="course in me.courses.values">
+          {{course.name}}
+        </li>
+      </ol>
+    </section>
+
+    <section ng-if="me.educations._total > 0">
+      <h3>Education</h3>
+      <section ng-repeat="education in me.educations.values">
+        <h4>{{education.schoolName}}</h4>
+        <h5>{{education.fieldOfStudy}}</h5>
+        <p>{{education.notes}}</p>
+        <p>{{formatDate(education.startDate)}} - {{formatDate(education.endDate)}}</p>
+      </section>
+    </section>
+
+    <section ng-if="me.honorsAwards._total > 0">
+      <h3>Honours and Awards</h3>
+      <ol>
+        <li ng-repeat="award in me.honorsAwards.values">
+          {{award.name}} ({{award.issuer}})
+        </li>
+      </ol>
+    </section>
+
+    <section ng-if="me.languages._total > 0">
+      <h3>Languages Spoken</h3>
+      <ol>
+        <li ng-repeat="spoken in me.languages.values">
+          {{spoken.language.name}}
+        </li>
+      </ol>
+    </section>
+
+    <section ng-if="me.publications._total > 0">
+      <h3>Publications</h3>
+      <ol>
+        <li ng-repeat="publication in me.publications.values">
+          {{publication.title}} ({{formatDate(publication.date)}})
+        </li>
+      </ol>
+    </section>
+
+    <section ng-if="me.skills._total > 0">
+      <h3>Skills</h3>
+      <ol class="cf">
+        <li ng-repeat="skill in me.skills.values">
+          {{skill.skill.name}}
+        </li>
+      </ol>
+    </section>
+
+    <section ng-if="me.memberUrlResources._total > 0">
+      <h3>URLs</h3>
+      <ol>
+        <li ng-repeat="url in me.memberUrlResources.values">
+          <a href="{{url.url}}" target="_blank">{{url.name}}</a>
+        </li>
+      </ol>
+    </section>
+
+    <section ng-if="me.recommendationsReceived._total > 0">
+      <h3>Recommendations</h3>
+      <blockquote ng-repeat="bigUp in me.recommendationsReceived.values">
+        <p ng-bind-html="bigUp.recommendationText"></p>
+        <footer>
+          — <cite><a href="http://www.linkedin.com/x/profile/zxqfbiusbj96/{{bigUp.recommender.id}}" target="_blank">{{bigUp.recommender.firstName}} {{bigUp.recommender.lastName}}</a> ({{bigUp.recommendationType.code}})</cite>
+        </footer>
+      </blockquote>
+    </section>
+
+  </div>
+
+</div>

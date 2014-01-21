@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/*------------------------------------*\
+    STYLE.CSS
+\*------------------------------------*/
+/**
+ *
+ * sass --watch style.scss:style.min.css --style compressed
+ *
+ * Here we pull in some variables, include the inuit.css framework, then add our
+ * project-specific components afterwards.
+ */
+
+
+/**
+ * Setup
+ */
+@import "vars";
+@import "inuit.css/inuit";
+
+
+
+
+
+/**
+ * She’s all yours, cap’n... Begin importing your stuff here.
+ */
+//@import "ui/example";
+
+
+
+
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  font-family: $brand-face;
+  padding: 1em;
+}
+
+.feature {
+  background: #FF0;
+  padding: $base-spacing-unit;
+  margin-bottom: $base-spacing-unit;
+}
+
+.feature p:last-child {
+  margin-bottom: 0;
+}
+
+.cf > li {
+  float: left;
+  width: 33%;
+}
