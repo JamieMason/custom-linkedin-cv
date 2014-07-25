@@ -7,8 +7,8 @@
 
 angular.module('linkedoutApp')
     .constant('LinkedInConfig', {
-        username: 'toadkicker',
-        apiKey: '7535cfsvehul5h',
+        username: '', /**change this to the profile name you want to fetch*/
+        apiKey: '', /** get an api key from developers.linkedin.com */
         lang: 'en-US',
         authorize: 'true',
         scope: 'r_basicprofile r_emailaddress r_fullprofile r_network rw_groups'
