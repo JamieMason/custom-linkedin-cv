@@ -2,7 +2,7 @@
 
 angular.module('linkedoutApp').factory('LinkedIn', [
 
-    '$q', '$window',
+    '$q', '$window', 'LinkedInConfig',
 
     function ($q, $window) {
 
@@ -13,11 +13,11 @@ angular.module('linkedoutApp').factory('LinkedIn', [
         script.src = 'http://platform.linkedin.com/in.js';
 
         script.innerHTML = [
-            'api_key: 7535cfsvehul5h',
-            'authorize: true',
-            'lang: en_US',
+            'api_key: ' + LinkedInConfig.apiKey,
+            'authorize: ' + LinkedInConfig.authorize,
+            'lang: ' + LinkedInConfig.lang,
             'onLoad: onLinkedInApiLoad',
-            'scope: r_basicprofile r_emailaddress r_fullprofile r_network rw_groups'
+            'scope: ' + LinkedInConfig.scope
         ].join('\n');
 
         $window.onLinkedInApiLoad = function () {

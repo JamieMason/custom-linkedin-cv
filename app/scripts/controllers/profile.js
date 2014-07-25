@@ -3,10 +3,9 @@
 angular.module('linkedoutApp')
     .controller('ProfileCtrl', [
 
-        '$scope',
-        'Profile',
+        '$scope', 'Profile', 'COMMON',
 
-        function ($scope, Profile) {
+        function ($scope, Profile, COMMON) {
 
             $scope.me = null;
             $scope.hasProfile = false;
@@ -24,20 +23,7 @@ angular.module('linkedoutApp')
                 }
             }
 
-            var months = {
-                '1': 'January',
-                '2': 'February',
-                '3': 'March',
-                '4': 'April',
-                '5': 'May',
-                '6': 'June',
-                '7': 'July',
-                '8': 'August',
-                '9': 'September',
-                '10': 'October',
-                '11': 'November',
-                '12': 'December'
-            };
+            var months = COMMON.months;
 
             $scope.formatDate = function (obj, fallback) {
                 var str = '';
