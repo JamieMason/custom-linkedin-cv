@@ -4,7 +4,7 @@ angular.module('linkedoutApp').factory('LinkedIn', [
 
     '$q', '$window', 'LinkedInConfig',
 
-    function ($q, $window) {
+    function ($q, $window, LinkedInConfig) {
 
         var doc = $window.document;
         var script = doc.createElement('script');
