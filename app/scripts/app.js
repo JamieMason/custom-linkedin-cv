@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('linkedoutApp', [
-  'ngRoute',
-  'ngSanitize'
+    'ngRoute',
+    'ngSanitize'
 ])
-  .config(function($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    });

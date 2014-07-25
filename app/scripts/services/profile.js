@@ -1,117 +1,109 @@
 'use strict';
 
 angular.module('linkedoutApp')
-  .factory('Profile', [
+    .factory('Profile', [
 
-    '$q',
-    'LinkedIn',
-    'Session',
+        '$q', 'LinkedIn', 'Session',
 
-    function(
+        function ($q, LinkedIn, Session) {
 
-      $q,
-      LinkedIn,
-      Session
+            return $q.all([LinkedIn, Session]).then(function (services) {
 
-    ) {
+                var IN = services[0];
+                var session = services[1];
+                var fields = [
 
-      return $q.all([LinkedIn, Session]).then(function(services) {
+                    // BASIC
 
-        var IN = services[0];
-        var session = services[1];
-        var fields = [
+                    // 'current-share',
+                    'distance',
+                    'first-name',
+                    'formatted-name',
+                    'formatted-phonetic-name',
+                    'headline',
+                    'id',
+                    'industry',
+                    'last-name',
+                    'location',
+                    'maiden-name',
+                    'num-connections',
+                    'num-connections-capped',
+                    'phonetic-first-name',
+                    'phonetic-last-name',
+                    'picture-url',
+                    'positions',
+                    'public-profile-url',
+                    'site-standard-profile-request',
+                    'specialties',
+                    'summary',
 
-          // BASIC
+                    // EMAIL
 
-          // 'current-share',
-          'distance',
-          'first-name',
-          'formatted-name',
-          'formatted-phonetic-name',
-          'headline',
-          'id',
-          'industry',
-          'last-name',
-          'location',
-          'maiden-name',
-          'num-connections',
-          'num-connections-capped',
-          'phonetic-first-name',
-          'phonetic-last-name',
-          'picture-url',
-          'positions',
-          'public-profile-url',
-          'site-standard-profile-request',
-          'specialties',
-          'summary',
+                    'email-address',
 
-          // EMAIL
+                    // CONTACT
 
-          'email-address',
+                    'bound-account-types',
+                    'im-accounts',
+                    'main-address',
+                    'phone-numbers',
+                    'primary-twitter-account',
+                    'twitter-accounts',
 
-          // CONTACT
+                    // FULL
 
-          'bound-account-types',
-          'im-accounts',
-          'main-address',
-          'phone-numbers',
-          'primary-twitter-account',
-          'twitter-accounts',
+                    'associations',
+                    'certifications',
+                    'courses',
+                    'date-of-birth',
+                    'educations',
+                    // 'following',
+                    'honors-awards',
+                    'interests',
+                    // 'job-bookmarks',
+                    'languages',
+                    'last-modified-timestamp',
+                    'member-url-resources',
+                    'mfeed-rss-url',
+                    'num-recommenders',
+                    'patents',
+                    'proposal-comments',
+                    'publications',
+                    'recommendations-received',
+                    // 'related-profile-views',
+                    'skills',
+                    // 'suggestions',
+                    // 'three-current-positions',
+                    // 'three-past-positions',
+                    'volunteer'
+                ];
 
-          // FULL
+                return {
 
-          'associations',
-          'certifications',
-          'courses',
-          'date-of-birth',
-          'educations',
-          // 'following',
-          'honors-awards',
-          'interests',
-          // 'job-bookmarks',
-          'languages',
-          'last-modified-timestamp',
-          'member-url-resources',
-          'mfeed-rss-url',
-          'num-recommenders',
-          'patents',
-          'proposal-comments',
-          'publications',
-          'recommendations-received',
-          // 'related-profile-views',
-          'skills',
-          // 'suggestions',
-          // 'three-current-positions',
-          // 'three-past-positions',
-          'volunteer'
-        ];
+                    get: function () {
 
-        return {
+                        var deferred = $q.defer();
+                        var endpoint = '/people/url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Ftoadkicker:(' + fields.join(',') + ')';
 
-          get: function() {
+                        if (!IN.User.isAuthorized()) {
+                            deferred.reject(new Error('current user is not authorised'));
+                        } else {
+                            IN.API.Raw(endpoint).result(function (data) {
+                                if (data) {
+                                    deferred.resolve(data);
+                                }
+                            }).error(function (err) {
+                                deferred.reject(err);
+                            });
+                        }
 
-            var deferred = $q.defer();
-            var endpoint = '/people/~:(' + fields.join(',') + ')';
+                        return deferred.promise;
 
-            if (!IN.User.isAuthorized()) {
-              deferred.reject(new Error('current user is not authorised'));
-            } else {
-              IN.API.Raw(endpoint).result(function(data) {
-                if (data) {
-                  deferred.resolve(data);
-                }
-              }).error(function(err) {
-                deferred.reject(err);
-              });
-            }
+                    }
 
-            return deferred.promise;
+                };
 
-          }
+            });
 
-        };
-
-      });
-
-    }
-  ]);
+        }
+    ]);
