@@ -3,9 +3,9 @@
 angular.module('linkedoutApp')
     .factory('Profile', [
 
-        '$q', 'LinkedIn', 'Session',
+        '$q', 'LinkedIn', 'Session', 'LinkedInConfig',
 
-        function ($q, LinkedIn, Session) {
+        function ($q, LinkedIn, Session, LinkedInConfig) {
 
             return $q.all([LinkedIn, Session]).then(function (services) {
 
@@ -83,7 +83,7 @@ angular.module('linkedoutApp')
                     get: function () {
 
                         var deferred = $q.defer();
-                        var endpoint = '/people/url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Ftoadkicker:(' + fields.join(',') + ')';
+                        var endpoint = '/people/url=http%3A%2F%2Fwww.linkedin.com%2Fin%2F'+LinkedInConfig.username+':(' + fields.join(',') + ')';
 
                         if (!IN.User.isAuthorized()) {
                             deferred.reject(new Error('current user is not authorised'));
