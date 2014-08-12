@@ -32,6 +32,20 @@ npm install
 bower install
 ```
 
+## Configure
+
+Open up app/scripts/services/constants.js
+
+```javascript
+.constant('LinkedInConfig', {
+        username: '', /**change this to the profile name you want to fetch*/
+        apiKey: '', /** get an api key from developers.linkedin.com */
+        lang: 'en-US',
+        authorize: 'true',
+        scope: 'r_basicprofile r_emailaddress r_fullprofile r_network rw_groups'
+    })
+```
+
 ## Run
 
 ```bash

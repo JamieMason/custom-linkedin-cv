@@ -1,36 +1,30 @@
 'use strict';
 
 angular.module('linkedoutApp')
-  .controller('MainCtrl', [
+    .controller('MainCtrl', [
 
-    '$scope',
-    'Session',
+        '$scope', 'Session',
 
-    function(
+        function ($scope, Session) {
 
-      $scope,
-      Session
+            $scope.isLoggedIn = false;
 
-    ) {
+            Session.then(function (session) {
 
-      $scope.isLoggedIn = false;
+                function updateLoginState(methodName, isLoggedIn) {
+                    session[methodName](function () {
+                        $scope.$apply(function () {
+                            $scope.isLoggedIn = isLoggedIn;
+                        });
+                    });
+                }
 
-      Session.then(function(session) {
+                $scope.login = session.login;
 
-        function updateLoginState(methodName, isLoggedIn) {
-          session[methodName](function() {
-            $scope.$apply(function() {
-              $scope.isLoggedIn = isLoggedIn;
+                updateLoginState('onLogin', true);
+                updateLoginState('onLogout', false);
+
             });
-          });
+
         }
-
-        $scope.login = session.login;
-
-        updateLoginState('onLogin', true);
-        updateLoginState('onLogout', false);
-
-      });
-
-    }
-  ]);
+    ]);
