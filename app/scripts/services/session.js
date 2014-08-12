@@ -5,11 +5,7 @@ angular.module('linkedoutApp')
 
     'LinkedIn',
 
-    function(
-
-      LinkedIn
-
-    ) {
+    function (LinkedIn) {
 
       return LinkedIn.then(function(IN) {
         return {
